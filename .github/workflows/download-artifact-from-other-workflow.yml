@@ -23,3 +23,8 @@ jobs:
           workflow_conclusion: success
           commit: ${{github.event.pull_request.head.sha}}
           name: ${{ format('{0}-{1}-{2}', github.sha, env.pname, env.pathmodified) }}
+      
+      - name: Print Artifact
+        run: |
+            ls -la .
+            cat hello.txt      
