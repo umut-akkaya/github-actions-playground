@@ -1,0 +1,44 @@
+on: workflow_dispatch
+name: Upload/Download Artifacts
+
+env:
+  pname: mascazel
+  path: root/files
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    outputs:
+      artifact-name: ${{ steps.replace-chars.outputs.pathmodified }}
+    steps:
+      - name: Create a File
+        run: echo "hello-changed" > hello.txt
+
+      - name: Replace Character in env save it o new env and pass to other step
+        id: replace-chars
+        run: |
+          export pathmodified=$(echo $path | sed 's/\//-/g')
+          echo "pathmodified=$pathmodified" >> $GITHUB_OUTPUT
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ format('{0}-{1}-{2}', github.sha, env.pname, env.pathmodified) }}
+          path: hello.txt
+  
+  download:
+    runs-on: ubuntu-latest
+    needs: upload
+    env:
+      pathmodified: ${{needs.upload.outputs.artifact-name}}
+    steps:
+      - name: Download Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ format('{0}-{1}-{2}', github.sha, env.pname, env.pathmodified) }}
+          path: hello.txt
+      
+      - name: Print Artifact
+        run: cat hello.txt
+
+
