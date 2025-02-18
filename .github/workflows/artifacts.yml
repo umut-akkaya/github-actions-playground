@@ -37,7 +37,6 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: ${{ format('{0}-{1}-{2}', github.sha, env.pname, env.pathmodified) }}
-          path: hello.txt
       
       - name: Print Artifact
         run: |
