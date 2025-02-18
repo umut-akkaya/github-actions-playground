@@ -40,6 +40,8 @@ jobs:
           path: hello.txt
       
       - name: Print Artifact
-        run: cat hello.txt
+        run: |
+          ls -la .
+          cat hello.txt
 
 
