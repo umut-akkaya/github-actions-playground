@@ -1,0 +1,15 @@
+on: workflow_dispatch
+name: String Operations
+
+env:
+  PLANET: mars
+  MOON: phobos
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Use of Format Function
+        env:
+          STRING_OUT: ${{ format('{0}-{1}-{2}', github.sha, env.PLANET, env.MOON) }}
+        run: Result is $STRING_OUT 
