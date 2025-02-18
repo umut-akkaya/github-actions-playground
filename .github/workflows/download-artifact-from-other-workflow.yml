@@ -1,0 +1,25 @@
+on: workflow_dispatch
+name: Upload/Download Artifacts
+
+env:
+  pname: mascazel
+  path: root/files
+
+jobs:
+  download-from-other-workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Replace Character in env save it in a new env and pass to other step
+        id: replace-chars
+        run: |
+          export pathmodified=$(echo $path | sed 's/\//-/g')
+          echo "pathmodified=$pathmodified" >> $GITHUB_ENV
+              
+      - name: Download Workflow
+        uses: dawidd6/action-download-artifact@v8
+        with:
+          github_token: ${{secrets.GITHUB_TOKEN}}
+          workflow: artifacts.yml
+          workflow_conclusion: success
+          commit: ${{github.event.pull_request.head.sha}}
+          name: ${{ format('{0}-{1}-{2}', github.sha, env.pname, env.pathmodified) }}
