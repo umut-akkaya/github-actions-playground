@@ -26,7 +26,8 @@ jobs:
       - name: List Files
         run: |
           ls -la .
-          env
+          PR_HEAD_SHA=$(git rev-parse HEAD)
+          echo $PR_HEAD_SHA
 
       - name: Print Github SHA
         env:
