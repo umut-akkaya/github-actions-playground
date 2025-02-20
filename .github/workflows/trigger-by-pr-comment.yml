@@ -32,7 +32,9 @@ jobs:
 
       - name: Check PR Status
         run: |
-          gh pr view $NUMBER --json reviewDecision --jq '.reviewDecision'
+            APPROVED=$([ $(gh pr view $NUMBER --json reviewDecision --jq '.reviewDecision') == 'APPROVED' ] && echo yes || echo no )
+            echo "Approved $APPROVED"
+            echo "approved=$APPROVED" >> $GITHUB_OUTPUT
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
 
