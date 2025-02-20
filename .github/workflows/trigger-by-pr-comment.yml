@@ -15,10 +15,9 @@ jobs:
         run: |
           echo "Triggered by a PR comment. PR number is $NUMBER"
           echo "NUMBER=$NUMBER" >> $GITHUB_ENV
-          echo "PR is $PR"
+          echo "PR is ${{ github.event.issue.pull_request }}"
         env:
           NUMBER: ${{ github.event.issue.number }}
-          PR: ${{ github.event.issue.pull_request }}
 
       - name: Checkout pull request
         uses: actions/checkout@v4
