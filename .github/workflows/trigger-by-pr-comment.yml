@@ -13,6 +13,7 @@ jobs:
       - name: Echo Trigger
         run: |
           echo "Triggered by a PR comment. PR number is $NUMBER"
+          echo "NUMBER=$NUMBER" >> $GITHUB_ENV
         env:
           NUMBER: ${{ github.event.issue.number }}
       - name: Checkout PR branch
