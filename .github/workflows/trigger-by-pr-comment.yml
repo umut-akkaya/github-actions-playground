@@ -26,6 +26,7 @@ jobs:
       - name: List Files
         run: |
           ls -la .
+          env
 
       - name: Print Github SHA
         env:
