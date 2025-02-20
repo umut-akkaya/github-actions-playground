@@ -15,3 +15,12 @@ jobs:
           echo "Triggered by a PR comment. PR number is $NUMBER"
         env:
           NUMBER: ${{ github.event.issue.number }}
+      - name: Checkout PR branch
+        run: |
+          gh pr checkout $NUMBER
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: List Files
+        run: |
+          ls -la .
+
