@@ -1,4 +1,5 @@
 ---
+name: Trigger by PR Comment
 on:
   issue_comment:
     types:
