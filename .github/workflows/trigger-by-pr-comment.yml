@@ -13,9 +13,10 @@ jobs:
 
       - name: Echo github obj
         run: |
-          echo ${{ toJson(github) }}
+          echo $ghctx
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ghctx: ${{ toJson(github) }}
 
       - name: Echo Trigger
         run: |
