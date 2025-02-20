@@ -25,6 +25,12 @@ jobs:
         env:
           NUMBER: ${{ github.event.issue.number }}
 
+      - name: Check PR Status
+        run: |
+          gh pr view $NUMBER
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
+
       - name: Checkout pull request
         uses: actions/checkout@v4
         with:
