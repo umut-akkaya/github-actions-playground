@@ -32,7 +32,7 @@ jobs:
 
       - name: Check PR Status
         run: |
-          gh pr view $NUMBER
+          gh pr view $NUMBER --json reviewDecision --jq '.reviewDecision'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
 
