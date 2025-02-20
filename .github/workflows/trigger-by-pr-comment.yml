@@ -11,11 +11,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
+      - name: Echo github obj
+        run: echo ${{ toJson(github) }}
+
       - name: Echo Trigger
         run: |
           echo "Triggered by a PR comment. PR number is $NUMBER"
           echo "NUMBER=$NUMBER" >> $GITHUB_ENV
-          echo "PR is ${{ github.event.issue.pull_request }}"
         env:
           NUMBER: ${{ github.event.issue.number }}
 
