@@ -13,7 +13,7 @@ jobs:
 
       - name: Echo github obj
         run: |
-          echo $ghctx
+          echo $ghctx | jq '.'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ghctx: ${{ toJson(github) }}
