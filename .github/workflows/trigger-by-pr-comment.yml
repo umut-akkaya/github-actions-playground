@@ -10,18 +10,26 @@ jobs:
     if: ${{ github.event.issue.pull_request }}
     runs-on: ubuntu-latest
     steps:
+
       - name: Echo Trigger
         run: |
           echo "Triggered by a PR comment. PR number is $NUMBER"
           echo "NUMBER=$NUMBER" >> $GITHUB_ENV
         env:
           NUMBER: ${{ github.event.issue.number }}
-      - name: Checkout PR branch
-        run: |
-          gh pr checkout $NUMBER
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Checkout pull request
+        uses: actions/checkout@v4
+        with:
+          ref: refs/pull/${{ github.event.issue.number }}/head
+
       - name: List Files
         run: |
           ls -la .
+
+      - name: Print Github SHA
+        env:
+          sha: ${{ github.sha }}
+        run: |
+          echo "SHA is $sha"
 
