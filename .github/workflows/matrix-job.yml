@@ -1,0 +1,25 @@
+on: workflow_dispatch
+name: Sequential Matrix Execution
+
+jobs:
+  sequential-run:
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 1
+      matrix:
+        include:
+          - color: green
+            animal: cat
+          - color: pink
+            animal: cat
+          - color: red
+            animal: camel
+          - color: blue
+            animal: dragon
+    steps:
+      - name: Echo
+        env:
+          color: ${{ matrix.color }}
+          animal: ${{ matrix.animal }}
+        run: |
+          echo "$color $animal"
