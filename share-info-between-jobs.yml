@@ -1,0 +1,22 @@
+---
+on: workflow_dispatch
+name: Share Info between jobs
+
+jobs:
+  first-run:
+    runs-on: ubuntu-latest
+    outputs:
+      message: ${{steps.echo.outputs.message}}
+    steps:
+      - name: Echo
+        id: echo
+        run: |-
+          echo "message=merhaba" >> $GITHUB_OUTPUT
+  
+  second-run:
+    runs-on: ubuntu-latest
+    needs: first-run
+    steps:
+      - name: Echo
+        id: alpha
+        run: echo ${{ needs.first-run.outputs.message }}
