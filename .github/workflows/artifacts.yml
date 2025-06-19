@@ -17,6 +17,9 @@ jobs:
       - name: Replace Character in env save it o new env and pass to other step
         id: replace-chars
         run: |
+          mkdir /folder/
+          mkdir /folder/.hidden
+          echo "ali" >> /folder/.hidden/ali.txt
           export pathmodified=$(echo $path | sed 's/\//-/g')
           echo "pathmodified=$pathmodified" >> $GITHUB_OUTPUT
           echo "pathmodified=$pathmodified" >> $GITHUB_ENV
@@ -25,7 +28,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ${{ format('{0}-{1}-{2}', github.sha, env.pname, env.pathmodified) }}
-          path: hello.txt
+          path: /folder/.hidden
   
   download:
     runs-on: ubuntu-latest
@@ -40,7 +43,8 @@ jobs:
       
       - name: Print Artifact
         run: |
-          ls -la .
+          ls -R .
+          ls -la /folder
           cat hello.txt
 
 
