@@ -20,14 +20,13 @@ jobs:
           mkdir /folder/
           mkdir /folder/.hidden
           echo "ali" >> /folder/.hidden/ali.txt
-          export pathmodified=$(echo $path | sed 's/\//-/g')
           echo "pathmodified=$pathmodified" >> $GITHUB_OUTPUT
           echo "pathmodified=$pathmodified" >> $GITHUB_ENV
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ format('{0}-{1}-{2}', github.sha, env.pname, env.pathmodified) }}
+          name: test
           path: /folder/.hidden
   
   download:
@@ -39,7 +38,7 @@ jobs:
       - name: Download Artifact
         uses: actions/download-artifact@v4
         with:
-          name: ${{ format('{0}-{1}-{2}', github.sha, env.pname, env.pathmodified) }}
+          name: test
       
       - name: Print Artifact
         run: |
