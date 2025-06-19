@@ -17,9 +17,9 @@ jobs:
       - name: Replace Character in env save it o new env and pass to other step
         id: replace-chars
         run: |
-          mkdir /folder/
-          mkdir /folder/.hidden
-          echo "ali" >> /folder/.hidden/ali.txt
+          mkdir tey
+          mkdir tey/.hidden
+          echo "ali" >> tey/.hidden/ali.txt
           echo "pathmodified=$pathmodified" >> $GITHUB_OUTPUT
           echo "pathmodified=$pathmodified" >> $GITHUB_ENV
 
@@ -43,7 +43,6 @@ jobs:
       - name: Print Artifact
         run: |
           ls -R .
-          ls -la /folder
           cat hello.txt
 
 
