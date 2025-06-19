@@ -19,6 +19,7 @@ jobs:
         run: |
           mkdir tey
           mkdir tey/.hidden
+          mv hello.txt tey/.hidden/
           echo "ali" >> tey/.hidden/ali.txt
           echo "pathmodified=$pathmodified" >> $GITHUB_OUTPUT
           echo "pathmodified=$pathmodified" >> $GITHUB_ENV
