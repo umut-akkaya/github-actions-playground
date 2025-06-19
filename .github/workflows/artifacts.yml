@@ -26,8 +26,8 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: test
-          path: /folder/.hidden
+          name: test-12345
+          path: tey/.hidden
   
   download:
     runs-on: ubuntu-latest
@@ -38,7 +38,7 @@ jobs:
       - name: Download Artifact
         uses: actions/download-artifact@v4
         with:
-          name: test
+          name: test-12345
       
       - name: Print Artifact
         run: |
