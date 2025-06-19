@@ -17,8 +17,8 @@ jobs:
         id: replace-chars
         run: |
           mkdir tey
-          mkdir tey/.hidden
-          mv hello.txt tey/.hidden/
+          mkdir tey/.hidden/teyto
+          mv hello.txt tey/.hidden/teyto/
           echo "ali" >> tey/.hidden/ali.txt
           echo "pathmodified=$pathmodified" >> $GITHUB_OUTPUT
           echo "pathmodified=$pathmodified" >> $GITHUB_ENV
