@@ -17,6 +17,7 @@ jobs:
         id: replace-chars
         run: |
           mkdir tey
+          mkdir tey/.hidden
           mkdir tey/.hidden/teyto
           mv hello.txt tey/.hidden/teyto/
           echo "ali" >> tey/.hidden/ali.txt
