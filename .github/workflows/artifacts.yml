@@ -22,12 +22,14 @@ jobs:
           echo "ali" >> tey/.hidden/ali.txt
           echo "pathmodified=$pathmodified" >> $GITHUB_OUTPUT
           echo "pathmodified=$pathmodified" >> $GITHUB_ENV
+          include-hidden-files: true
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: test-12345
           path: tey/.hidden
+          
   
   download:
     runs-on: ubuntu-latest
