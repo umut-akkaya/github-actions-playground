@@ -3,7 +3,6 @@ name: Upload/Download Artifacts
 
 env:
   pname: mascazel
-  path: root/files
 
 jobs:
   upload:
