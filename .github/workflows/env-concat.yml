@@ -1,0 +1,29 @@
+---
+name: Env Concat
+
+on: 
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+        type: choice
+        options:
+        - info
+        - warning
+        - debug
+      tags:
+        description: 'Test scenario tags'
+        required: true
+        type: string
+env:
+  CONCAT_ENV: ${{ format('{0}-{1}', inputs.logLevel, inputs.tags) }}
+
+jobs:
+  print-env:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print-env
+        run: echo $CONCAT_ENV
+
