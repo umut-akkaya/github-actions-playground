@@ -9,4 +9,4 @@ jobs:
   first-run:
     runs-on: ubuntu-latest
     steps:
-      - uses: umutakkaya/github-actions-playground/.github/workflows/caller@main
+      - uses: umutakkaya/github-actions-playground/.github/workflows/caller.yml@main
