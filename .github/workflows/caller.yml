@@ -3,7 +3,7 @@
 on:
   workflow_dispatch:
   workflow_call:
-name: Share Info between jobs
+name: Triggered Action
 
 jobs:
   first-run:

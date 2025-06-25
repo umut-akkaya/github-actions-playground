@@ -1,10 +1,9 @@
 ---
 on: workflow_dispatch
-name: Triggered Action
+name: Caller Action
 
 jobs:
   first-run:
     runs-on: ubuntu-latest
     steps:
-      - name: TriggerWorkflow
-        uses: umutakkaya/github-actions-playground/.github/workflows/caller@main
+      - uses: umutakkaya/github-actions-playground/.github/workflows/caller@main
