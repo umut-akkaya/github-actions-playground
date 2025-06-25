@@ -8,4 +8,5 @@ on:
 jobs:
   first-run:
     runs-on: ubuntu-latest
-    uses: umut-akkaya/github-actions-playground/.github/workflows/caller.yml@main
+    steps:
+      - uses: umut-akkaya/github-actions-playground/.github/workflows/caller.yml@main
