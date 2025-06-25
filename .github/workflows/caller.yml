@@ -6,7 +6,7 @@ on:
 name: Triggered Action
 
 jobs:
-  first-run:
+  called-run:
     runs-on: ubuntu-latest
     steps:
       - name: Echo
