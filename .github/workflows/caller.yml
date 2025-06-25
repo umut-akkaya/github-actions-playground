@@ -1,0 +1,16 @@
+---
+
+on:
+  workflow_dispatch:
+  workflow_call:
+name: Share Info between jobs
+
+jobs:
+  first-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo
+        id: echo
+        run: |-
+          sleep 10
+          echo "10 seconds sleeped"

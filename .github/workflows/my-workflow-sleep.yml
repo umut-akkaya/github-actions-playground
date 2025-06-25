@@ -1,0 +1,12 @@
+---
+on: workflow_dispatch
+name: Triggered Action
+
+jobs:
+  first-run:
+    runs-on: ubuntu-latest
+    outputs:
+      message: ${{steps.echo.outputs.message}}
+    steps:
+      - name: TriggerWorkflow
+        uses: umutakkaya/github-actions-playground/.github/workflows/caller@main
