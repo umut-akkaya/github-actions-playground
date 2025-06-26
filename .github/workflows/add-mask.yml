@@ -1,0 +1,27 @@
+---
+name: Mask and Pass Values
+on:
+  push:
+    main
+
+jobs:
+  create-mask:
+    runs-on: ubuntu-latest
+    outputs:
+      masked_value: ${{ steps.create-masked-value.outputs.masked_value }}
+    steps:
+      - name: Create Masked Value
+        id: create-masked-value
+        run: |-
+          MASKED_VALUE=umut
+          echo "::add-mask::$MASKED_VALUE"
+          echo "masked_value=$MASKED_VALUE" >> "$GITHUB_OUTPUT"
+
+  get-masked-value:
+    runs-on: ubuntu-latest
+    needs: [create-mask]
+    env:
+      MASKED_VALUE: ${{ needs.create-mask.outputs.masked_value }}
+    steps:
+      - name: Print masked
+        run: echo $MASKED_VALUE
