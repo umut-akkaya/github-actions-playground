@@ -2,7 +2,8 @@
 name: Mask and Pass Values
 on:
   push:
-    main
+    branches:
+      - main
 
 jobs:
   create-mask:
